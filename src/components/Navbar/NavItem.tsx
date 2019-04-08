@@ -8,8 +8,8 @@ interface LinkProps {
 }
 
 const navItem: React.FC<LinkProps> = ({ to, label }) => (
-    <Link to={to}>
-      <Button variant="raised" color="primary">
+    <Link style={{paddingLeft: 8, paddingRight: 8}} to={to}>
+      <Button variant='outlined' color='primary'>
         <span>{label}</span>
       </Button>
     </Link>
