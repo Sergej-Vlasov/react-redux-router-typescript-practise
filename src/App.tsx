@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
@@ -9,7 +9,7 @@ import NotFound from './components/NotFound';
 import Navbar from './components/Navbar/Navbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">

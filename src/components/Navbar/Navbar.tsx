@@ -9,10 +9,9 @@ const navbar: React.FC = () => (
     <AppBar position='static' color='default'>
         <Toolbar>
             <NavItem to='/' label='Home'/>
-            <NavItem to='/news' label='News'/>
-            <NavItem to='/login' label='Login'/>
+            <NavItem to='/news' label='News'/> 
             <NavItem to='/profile' label='Profile'/>
-            <NavItem to='/404' label='404'/> 
+            <NavItem to='/login' label='Login'/>
         </Toolbar>
     </AppBar>
         
