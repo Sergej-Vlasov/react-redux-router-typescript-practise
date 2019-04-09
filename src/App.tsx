@@ -14,7 +14,7 @@ const app: React.FC = () => {
   return (
     <div className="App">
       <CssBaseline/>
-      <Navbar/>
+      <Navbar />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/news' component={News}/>

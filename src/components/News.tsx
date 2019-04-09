@@ -7,8 +7,7 @@ import {v4 as uuidV4} from 'uuid';
 import { INewsItem, IReducerState } from '../store/reducer'
 
 interface INewsProps extends IStateProps, IDispatchProps {
-    news: INewsItem[]
-    onGetNews: (newsData:INewsItem[]) => { type: string; payload: any; }
+
 }
 
 const news:React.FC<INewsProps> = props => {

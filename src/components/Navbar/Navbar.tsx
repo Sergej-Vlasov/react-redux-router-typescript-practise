@@ -1,13 +1,17 @@
-import React from 'react';
+import * as React from 'react';
+import * as Redux from 'redux';
 import NavItem from './NavItem';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button'
-import * as actionTypes from '../../store/actions'
+import Button from '@material-ui/core/Button';
+import * as actionTypes from '../../store/actions';
+import { IReducerState } from '../../store/reducer';
 
+interface INavbarProps extends IStateToProps, IDispatchToProps {
+}
 
-const navbar = (props) => (
+const navbar: React.FC<INavbarProps> = props => (
     <div>
         <AppBar position='static' color='default'>
             <Toolbar>
@@ -22,12 +26,21 @@ const navbar = (props) => (
     </div>
 );
 
-const mapStateToProps = state => {
+interface IStateToProps {
+    isAuth: boolean;
+}
+
+const mapStateToProps = (state:IReducerState): IStateToProps => {
     return {
-        isAuth: state.authenticated,
+        isAuth: state.authenticated
     }
 };
-const mapDispatchToProps = dispatch => {
+
+interface IDispatchToProps {
+    onLogOut?: () => {type:string}
+}
+
+const mapDispatchToProps = (dispatch: Redux.Dispatch<any>): IDispatchToProps => {
     return {
         onLogOut: () => dispatch({type: actionTypes.LOG_OUT})
     }
