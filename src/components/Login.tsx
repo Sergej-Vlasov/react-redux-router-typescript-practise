@@ -1,26 +1,30 @@
-import React, {useState} from 'react';
+import * as React from 'react';
+import * as Redux from 'redux';
 import { connect } from 'react-redux';
 import { credentialChecker } from '../store/actions';
 import { Redirect } from 'react-router-dom';
+import { INewsItem, IReducerState } from '../store/reducer'
 
-const login = (props) => {
-    const [username, setUsername] = useState({username: ''});
-    const [password, setPassword] = useState({password: ''});
+interface ILoginProps extends IStateToProps, IDispatchToProps {
+
+}
+
+const login:React.FC<ILoginProps> = (props) => {
+    const [username, setUsername] = React.useState({username: ''});
+    const [password, setPassword] = React.useState({password: ''});
 
     const submitCredentialsHandler = () => {
         props.onAuthenticationAttempt(username.username, password.password)
-        // setUsername({username: ''});
-        // setPassword({password: ''})
 
     }
 
-    const enterKeyHandler = (e) => {
+    const enterKeyHandler = (e:React.KeyboardEvent<HTMLDivElement>) => {
         if (e.keyCode === 13) {
             submitCredentialsHandler();
         }
     }
 
-    let authRedirect = null;
+    let authRedirect:JSX.Element|null = null;
     if (props.isAuth) {
         authRedirect = <Redirect to='/profile'/>
     }
@@ -38,14 +42,23 @@ const login = (props) => {
 
 };
 
-const mapStateToProps = state => {
+interface IStateToProps{
+    isAuth: boolean;
+    isError: boolean;
+}
+
+const mapStateToProps = (state:IReducerState): IStateToProps => {
     return {
         isAuth: state.authenticated,
         isError: state.loginError
     }
 };
 
-const mapDispatchToProps = dispatch => {
+interface IDispatchToProps {
+    onAuthenticationAttempt: (usrn:string, pwd:string) => {type:string}
+}
+
+const mapDispatchToProps = (dispatch: Redux.Dispatch<any>): IDispatchToProps => {
     return {
         onAuthenticationAttempt: (usrn, pwd) => dispatch(credentialChecker(usrn, pwd))
     }

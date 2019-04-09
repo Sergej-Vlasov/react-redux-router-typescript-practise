@@ -1,10 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { INewsItem, IReducerState } from '../store/reducer'
 
-const profile = (props) => {
+interface IProfileProps extends IStateToProps {
 
-    let authCheck = null;
+}
+
+const profile:React.FC<IProfileProps> = (props) => {
+
+    let authCheck: JSX.Element|null = null;
     if (!props.isAuth) {
         authCheck = <Redirect to='/login'/>
     }
@@ -16,8 +21,11 @@ const profile = (props) => {
         </div>
     )
 }
+interface IStateToProps {
+    isAuth: boolean;
+}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: IReducerState): IStateToProps => {
     return {
         isAuth: state.authenticated,
     }

@@ -1,9 +1,25 @@
 import * as actionTypes from '../store/actions'
 
-const initialState = {
+export interface INewsItem {
+    author: string;
+    title: string; 
+    description: string;
+    url: string;
+    urlToImage: string;
+    publishedAt: string; 
+    content: string;
+}
+
+export interface IReducerState {
+    authenticated: boolean;
+    loginError: boolean;
+    news: INewsItem[];
+}
+
+const initialState:IReducerState = {
     authenticated: false,
     loginError: false,
-    news: undefined
+    news: []
 }
 
 const reducer = (state=initialState, action) => {

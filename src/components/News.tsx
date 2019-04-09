@@ -1,14 +1,20 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
+import * as Redux from 'redux'
 import * as actionTypes from '../store/actions'
 import axios from 'axios';
-import uuidV4 from 'uuid/v4';
+import {v4 as uuidV4} from 'uuid';
+import { INewsItem, IReducerState } from '../store/reducer'
 
+interface INewsProps extends IStateProps, IDispatchProps {
+    news: INewsItem[]
+    onGetNews: (newsData:INewsItem[]) => { type: string; payload: any; }
+}
 
-const news = (props) => {
+const news:React.FC<INewsProps> = props => {
 
-    useEffect(() => {
-        if (typeof props.news === 'undefined') {
+    React.useEffect(() => {
+        if (!props.news.length) {
             axios.get('https://newsapi.org/v2/top-headlines?country=gb&apiKey=5e61e110059c4a9c832c81d75fc8a6ee')
             .then(response => {
                 console.log(response.data.articles)
@@ -17,8 +23,8 @@ const news = (props) => {
         }
     }, [])
 
-    let content = <p>Loading news</p>;
-    if(typeof props.news !== 'undefined'){
+    let content:JSX.Element| JSX.Element[] = <p>Loading news</p>;
+    if(props.news.length){
         content = props.news.map(article => {
             return(
                 <div key={uuidV4()}>
@@ -37,12 +43,22 @@ const news = (props) => {
     );
 }
 
-const mapStateToProps = state => {
+interface IStateProps {
+    news: INewsItem[]
+}
+
+const mapStateToProps = (state: IReducerState): IStateProps => {
     return {
         news: state.news
     }
 };
-const mapDispatchToProps = dispatch => {
+
+
+interface IDispatchProps {
+    onGetNews: (newsData:INewsItem[]) => { type: string; payload: INewsItem[]; }
+}
+
+const mapDispatchToProps = (dispatch: Redux.Dispatch<any>):IDispatchProps => {
     return {
         onGetNews: (newsData) => dispatch({type: actionTypes.STORE_NEWS, payload: newsData})
     }

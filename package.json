@@ -38,6 +38,7 @@
   ],
   "devDependencies": {
     "@types/react-redux": "^7.0.6",
+    "@types/uuid": "^3.4.4",
     "tslint": "^5.15.0",
     "tslint-react": "^4.0.0"
   }
