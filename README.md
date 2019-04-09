@@ -1,4 +1,4 @@
-TZ #1, v.2.0 - community codereview project
+TZ #1, v.2.0 - community code review project
 ===
 
 ## About me
