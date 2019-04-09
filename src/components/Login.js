@@ -13,11 +13,17 @@ const login = (props) => {
 
     }
 
+    const enterKeyHandler = (e) => {
+        if (e.keyCode === 13) {
+            submitCredentialsHandler();
+        }
+    }
+
     return (
-        <div className='container'>
+        <div className='container' onKeyDown={enterKeyHandler}>
             <input type='text' placeholder='username' value={username.username} onChange={e => setUsername({username: e.target.value})}/>
             <input type='password' placeholder='password' value={password.password} onChange={e => setPassword({password: e.target.value})}/>
-            <button onClick={submitCredentialsHandler}>Submit</button>
+            <button onClick={submitCredentialsHandler}>Signup</button>
             {props.isAuth ? <p>Logged in!</p>: null}
             {props.isError ? <p>incorrect credentials</p>: null}
         </div>
