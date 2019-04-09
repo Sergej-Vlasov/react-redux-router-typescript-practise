@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { credentialChecker } from '../store/actions';
+import { Redirect } from 'react-router-dom';
 
 const login = (props) => {
     const [username, setUsername] = useState({username: ''});
@@ -19,11 +20,17 @@ const login = (props) => {
         }
     }
 
+    let authRedirect = null;
+    if (props.isAuth) {
+        authRedirect = <Redirect to='/profile'/>
+    }
+
     return (
         <div className='container' onKeyDown={enterKeyHandler}>
+            {authRedirect}
             <input type='text' placeholder='username' value={username.username} onChange={e => setUsername({username: e.target.value})}/>
             <input type='password' placeholder='password' value={password.password} onChange={e => setPassword({password: e.target.value})}/>
-            <button onClick={submitCredentialsHandler}>Signup</button>
+            <button onClick={submitCredentialsHandler} >Signin</button>
             {props.isAuth ? <p>Logged in!</p>: null}
             {props.isError ? <p>incorrect credentials</p>: null}
         </div>
