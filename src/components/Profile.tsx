@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { INewsItem, IReducerState } from '../store/reducer'
+import { IReducerState } from '../store/types'
 
 interface IProfileProps extends IStateToProps {
 

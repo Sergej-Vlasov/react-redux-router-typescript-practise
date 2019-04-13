@@ -5,8 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import * as actionTypes from '../../store/actions';
-import { IReducerState } from '../../store/reducer';
+import { IReducerState, LOG_OUT } from '../../store/types'
 
 interface INavbarProps extends IStateToProps, IDispatchToProps {
 }
@@ -42,7 +41,7 @@ interface IDispatchToProps {
 
 const mapDispatchToProps = (dispatch: Redux.Dispatch<any>): IDispatchToProps => {
     return {
-        onLogOut: () => dispatch({type: actionTypes.LOG_OUT})
+        onLogOut: () => dispatch({type: LOG_OUT})
     }
 };
 

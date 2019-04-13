@@ -1,20 +1,12 @@
-import * as actionTypes from '../store/actions'
+import {
+    IReducerState,
+    SUCCESSFUL_LOGIN,
+    UNSUCCESSFUL_LOGIN,
+    LOG_OUT,
+    STORE_NEWS,
+    IActionTypes
+} from './types'
 
-export interface INewsItem {
-    author: string;
-    title: string; 
-    description: string;
-    url: string;
-    urlToImage: string;
-    publishedAt: string; 
-    content: string;
-}
-
-export interface IReducerState {
-    authenticated: boolean;
-    loginError: boolean;
-    news: INewsItem[];
-}
 
 const initialState:IReducerState = {
     authenticated: false,
@@ -22,27 +14,27 @@ const initialState:IReducerState = {
     news: []
 }
 
-const reducer = (state=initialState, action) => {
+const reducer = (state=initialState, action: IActionTypes): IReducerState => {
 
     switch(action.type){
-        case actionTypes.SUCCESSFUL_LOGIN:
+        case SUCCESSFUL_LOGIN:
             return {
                 ...state,
                 authenticated: true,
                 loginError: false
             };
-        case actionTypes.UNSUCCESSFUL_LOGIN:
+        case UNSUCCESSFUL_LOGIN:
             return {
                 ...state,
                 authenticated: false,
                 loginError: true
             }
-        case actionTypes.LOG_OUT:
+        case LOG_OUT:
             return {
                 ...state,
                 authenticated: false
             }
-        case actionTypes.STORE_NEWS:
+        case STORE_NEWS:
             return {
                 ...state,
                 news: action.payload
@@ -50,11 +42,6 @@ const reducer = (state=initialState, action) => {
         default:
             return state;
     }
-
-
-
-    
-    
 }
 
 export default reducer;

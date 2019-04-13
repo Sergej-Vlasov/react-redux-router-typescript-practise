@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as Redux from 'redux'
-import * as actionTypes from '../store/actions'
 import axios from 'axios';
 import {v4 as uuidV4} from 'uuid';
-import { INewsItem, IReducerState } from '../store/reducer'
+import {
+    INewsItem,
+    IReducerState,
+    STORE_NEWS
+} from '../store/types';
 
 interface INewsProps extends IStateProps, IDispatchProps {
 
@@ -16,7 +19,6 @@ const news:React.FC<INewsProps> = props => {
         if (!props.news.length) {
             axios.get('https://newsapi.org/v2/top-headlines?country=gb&apiKey=5e61e110059c4a9c832c81d75fc8a6ee')
             .then(response => {
-                console.log(response.data.articles)
                 props.onGetNews(response.data.articles)
             })
         }
@@ -59,7 +61,7 @@ interface IDispatchProps {
 
 const mapDispatchToProps = (dispatch: Redux.Dispatch<any>):IDispatchProps => {
     return {
-        onGetNews: (newsData) => dispatch({type: actionTypes.STORE_NEWS, payload: newsData})
+        onGetNews: (newsData) => dispatch({type: STORE_NEWS, payload: newsData})
     }
 };
 

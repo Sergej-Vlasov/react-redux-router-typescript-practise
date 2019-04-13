@@ -3,7 +3,7 @@ import * as Redux from 'redux';
 import { connect } from 'react-redux';
 import { credentialChecker } from '../store/actions';
 import { Redirect } from 'react-router-dom';
-import { IReducerState } from '../store/reducer'
+import { IReducerState } from '../store/types'
 
 interface ILoginProps extends IStateToProps, IDispatchToProps {
 
