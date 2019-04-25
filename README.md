@@ -10,7 +10,7 @@ password: 12345
 
 ## About me
 
-I am a self-taught front-end developer with around 9 months of after work learning experience. Current I am not employed, but actively looking for a job in London, UK.
+I am a self-taught front-end developer with around 9 months of after work learning experience. Currently I am not employed, but actively looking for a job in London, UK.
 
 ## Project progress
 
